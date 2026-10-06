@@ -4,6 +4,18 @@ CV web con mi trayectoria profesional, proyectos open source y stack técnico.
 
 **CV online:** [https://daniquir.github.io/online-cv/](https://daniquir.github.io/online-cv/)
 
+### Vistas del CV
+
+Una sola fuente (`_data/data.yml`) genera tres vistas; el selector arriba a la derecha cambia entre ellas:
+
+| Vista | URL | Uso |
+| :--- | :--- | :--- |
+| **Mixto** (por defecto) | [/online-cv/](https://daniquir.github.io/online-cv/) | Equilibrio impacto + stack |
+| **Técnico** | [/online-cv/tecnico/](https://daniquir.github.io/online-cv/tecnico/) | Escaneos ATS / requisitos técnicos |
+| **Funcional** | [/online-cv/funcional/](https://daniquir.github.io/online-cv/funcional/) | Enfoque en impacto y entrega |
+
+El botón PDF descarga el PDF de la vista activa. Tests del modelo: `npm test` (o `ruby scripts/test-cv-views.rb`).
+
 ---
 
 ## Sobre mí

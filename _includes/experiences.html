@@ -1,3 +1,4 @@
+{% include assign-cv-view.html %}
 {% assign experiences = site.data.data.experiences %}
 {% if experiences %}
 <section class="section experiences-section">
@@ -23,9 +24,17 @@
 
     </div><!--//meta-->
 
-    {% if experience.details %}
+    {% if experience.details[cv_view] %}
+      {% assign details_text = experience.details[cv_view] %}
+    {% elsif experience.details.mixto %}
+      {% assign details_text = experience.details.mixto %}
+    {% else %}
+      {% assign details_text = experience.details %}
+    {% endif %}
+
+    {% if details_text %}
     <div class="details">
-      {{ experience.details | markdownify }}
+      {{ details_text | markdownify }}
     </div><!--//details-->
     {% endif %}
 
@@ -34,4 +43,3 @@
 
 </section><!--//section-->
 {% endif %}
-

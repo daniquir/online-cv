@@ -1,10 +1,18 @@
+{% include assign-cv-view.html %}
 {% assign skills = site.data.data.skills %}
-{% if skills and skills.core %}
+{% if skills.core[cv_view] %}
+  {% assign skills_core = skills.core[cv_view] %}
+{% elsif skills.core.mixto %}
+  {% assign skills_core = skills.core.mixto %}
+{% else %}
+  {% assign skills_core = skills.core %}
+{% endif %}
+{% if skills and skills_core %}
 <div class="skills-sidebar container-block">
   <h2 class="container-block-title">{{ skills.title }}</h2>
 
   <div class="skill-groups">
-    {% for group in skills.core %}
+    {% for group in skills_core %}
     <div class="skill-group">
       <h3 class="skill-group-label font-mono">{{ group.label }}</h3>
       <ul class="skill-tags">

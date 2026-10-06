@@ -1,5 +1,13 @@
+{% include assign-cv-view.html %}
 {% assign skills = site.data.data.skills %}
-{% if skills and skills.intro %}
+{% if skills.intro[cv_view] %}
+  {% assign skills_intro = skills.intro[cv_view] %}
+{% elsif skills.intro.mixto %}
+  {% assign skills_intro = skills.intro.mixto %}
+{% else %}
+  {% assign skills_intro = skills.intro %}
+{% endif %}
+{% if skills and skills_intro %}
 <section class="skills-section section">
   <h2 class="section-title">
     <span class="fa-stack fa-xs">
@@ -10,7 +18,7 @@
   </h2>
 
   <div class="intro skills-intro">
-    {{ skills.intro | markdownify }}
+    {{ skills_intro | markdownify }}
   </div>
 </section>
 {% endif %}

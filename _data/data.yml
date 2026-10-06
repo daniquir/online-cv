@@ -1,6 +1,28 @@
 #
+# Fuente única del CV. Textos largos admiten variantes por vista:
+#   mixto | tecnico | funcional
+# La vista activa la elige cada página (front matter `cv_view`).
 # Be aware that even a small syntax error here can lead to failures in output.
 #
+
+cv:
+  default_view: mixto
+  views:
+  - id: mixto
+    label: Mixto
+    short: Mix
+    path: /
+    pdf: Daniel_Quirant_Rico_CV.pdf
+  - id: tecnico
+    label: Técnico
+    short: Tec
+    path: /tecnico/
+    pdf: Daniel_Quirant_Rico_CV_tecnico.pdf
+  - id: funcional
+    label: Funcional
+    short: Fun
+    path: /funcional/
+    pdf: Daniel_Quirant_Rico_CV_funcional.pdf
 
 sidebar:
   position: left
@@ -8,7 +30,10 @@ sidebar:
   education: True
 
   name: Daniel Quirant Rico
-  tagline: Senior Backend Engineer · Java/Spring
+  tagline:
+    mixto: Senior Backend Engineer · Java/Spring
+    tecnico: Senior Backend Engineer · Java · Spring Boot · Microservicios
+    funcional: Senior Backend Engineer · Arquitectura y modernización
   prompt: daniel@backend
   avatar: profile.png
 
@@ -45,12 +70,29 @@ sidebar:
 
 career-profile:
   title: Sobre mí
-  summary: |
-    Backend senior en **Java/Spring** con más de once años en producción en retail (Inditex), financiero, salud y administración pública. Me ocupo sobre todo de **arquitectura y migraciones**: sacar sistemas legacy, diseñar microservicios que aguanten picos de carga y mantener el servicio mientras cambias piezas debajo.
+  summary:
+    mixto: |
+      Backend senior en **Java/Spring** con más de once años en producción en retail (Inditex), financiero, salud y administración pública. Me ocupo sobre todo de **arquitectura y migraciones**: sacar sistemas legacy, diseñar **microservicios** que aguanten picos de carga y mantener el servicio mientras cambias piezas debajo.
 
-    En **Qindel** (cliente Inditex) participo en la modernización del core de negocio: arquitectura hexagonal, Java 25 y microservicios, sustituyendo procesos batch de horas por datos operativos casi en tiempo real. En **Vitro** formé parte del equipo de I+D que levantó una plataforma sanitaria desde cero; yo llevé el módulo analítico y de datos **multicentro**, con sincronización casi en tiempo real entre sedes hospitalarias.
+      Experiencia sólida en **Spring Boot / Spring Framework**, **Maven**, definición e implementación de **APIs RESTful**, bases de datos **SQL y NoSQL**, y trabajo en **metodología Agile**. Redacción técnica (OpenAPI, docs de arquitectura, formaciones).
 
-    En el día a día apoyo al equipo con **tests automatizados**, generadores de código y librerías compartidas. Combino backend con **Angular** y TypeScript cuando el proyecto lo pide. Fuera del trabajo mantengo proyectos personales en **Rust** y **Python** (ver sección de proyectos). Formación previa en mecánica industrial.
+      En **Qindel** (cliente Inditex) participo en la modernización del core de negocio: arquitectura hexagonal, Java 25, microservicios y entorno **AWS**. En **Vitro** formé parte del equipo de I+D que levantó una plataforma sanitaria desde cero. Apoyo al equipo con **tests automatizados**, generadores de código y librerías compartidas.
+    tecnico: |
+      Senior Backend Engineer con **más de 11 años de experiencia sólida en Java** (> 5 años exigidos) en entornos de producción (retail Inditex, financiero, salud y administración pública).
+
+      Experiencia sólida con **Spring Boot / Spring Framework** (incl. Spring Boot 3.x, Spring Cloud, Spring Security), **Maven** como herramienta de construcción, y **definición e implementación de APIs RESTful** (OpenAPI/Swagger, contratos entre servicios).
+
+      Conocimiento de bases de datos **SQL** (PostgreSQL, Oracle) y **NoSQL** (MongoDB, Elasticsearch). Experiencia con **arquitectura de microservicios**, **metodología Agile** (Scrum/Kanban) y **capacidad de redacción técnica** (diseño de APIs, documentación de arquitectura, formaciones internas).
+
+      Stack habitual: Hibernate/JPA, Liquibase/Flyway, Docker, Kubernetes/OpenShift, Kafka, RabbitMQ, JMS, Jenkins, SonarQube, TDD y Testcontainers. En cloud: **AWS** (puesto actual); en stack también **API Gateway** y **Lambda**.
+
+      En **Qindel** (Inditex): modernización del core con Java 25, arquitectura hexagonal, microservicios Spring y **AWS**. En **Vitro** (salud): plataforma Java/Spring Boot desde cero; módulo analítico multicentro. Combino backend con Angular/TypeScript cuando el proyecto lo pide.
+    funcional: |
+      Backend senior con más de once años ayudando a negocio a **modernizar sistemas críticos** sin cortar servicio: retail (Inditex), financiero, salud y administración pública.
+
+      Me centro en **arquitectura, migraciones y entrega incremental**: sacar legacy, diseñar servicios que escalen y alinear equipos técnicos con objetivos de negocio. En Qindel (Inditex), en entorno **AWS**, impulso la evolución del core hacia datos operativos casi en tiempo real. En Vitro participé en el I+D de una plataforma sanitaria multicentro desde cero.
+
+      Acostumbrado a **metodologías Agile**, liderazgo técnico de equipos pequeños, formaciones internas y **redacción técnica** clara para stakeholders y desarrollo. Combino visión de producto con rigor de ingeniería.
 
 education:
   title: Educación
@@ -72,43 +114,85 @@ experiences:
   - role: Senior Backend Engineer
     time: 2024 - actualidad
     company: Qindel — Inditex · core retail
-    details: |
-      Migración del core de negocio desde legacy hacia **Java 25**, **arquitectura hexagonal** y **microservicios** (Spring Boot, Spring Cloud). Referencia técnica en diseño y evolución del nuevo sistema.
+    details:
+      mixto: |
+        Migración del core de negocio desde legacy hacia **Java 25**, **arquitectura hexagonal** y **microservicios** (Spring Boot, Spring Cloud, Maven) sobre **AWS**. Referencia técnica en diseño y evolución del nuevo sistema.
 
-      En curso: sustituir procesos batch que hoy tardan **horas** por **datos operativos casi en tiempo real** en el entorno retail.
+        En curso: sustituir procesos batch que hoy tardan **horas** por **datos operativos casi en tiempo real** en el entorno retail.
 
-      Roadmap incremental sin cortar servicio. Diseño de APIs con **OpenAPI**, contratos entre servicios, **Testcontainers** y **TDD** como práctica habitual del equipo.
+        Roadmap incremental en **Agile** sin cortar servicio. Diseño de **APIs RESTful** con **OpenAPI**, contratos entre servicios, **Testcontainers** y **TDD**. Redacción técnica de diseños y contratos de API.
+      tecnico: |
+        Migración del core de negocio Inditex: **Java 25**, **Spring Boot / Spring Framework**, **Spring Cloud**, **Maven**, **arquitectura hexagonal** y **microservicios**, con plataforma en **AWS**.
+
+        Definición e implementación de **APIs RESTful** con **OpenAPI**; contratos entre servicios; bases de datos **SQL** en el dominio retail. Prácticas **TDD**, **JUnit**, **Mockito**, **Testcontainers**.
+
+        Trabajo en **metodología Agile**; **redacción técnica** de diseños de arquitectura, ADRs y documentación de APIs. Roadmap incremental sin cortar servicio: batch de horas → datos operativos casi en tiempo real.
+      funcional: |
+        Referencia técnica en la modernización del core de negocio Inditex (entorno **AWS**): evolucionar el legacy hacia una arquitectura de servicios mantenible y operable.
+
+        Impulso un roadmap incremental que sustituye batchs de horas por datos casi en tiempo real, sin interrumpir el negocio. Facilito acuerdos de contrato entre equipos, calidad mediante TDD y documentación clara para quien construye y opera el sistema.
+
   - role: Senior Backend Engineer
     time: 2020 - 2024
     company: Vitro · I+D sector salud
-    details: |
-      Desarrollo en equipo de una plataforma **Java/Spring Boot** para sector salud, desde el diseño inicial hasta producción.
+    details:
+      mixto: |
+        Desarrollo en equipo de una plataforma **Java/Spring Boot** (Maven) para sector salud, desde el diseño inicial hasta producción. **APIs RESTful**, datos **SQL/NoSQL** según caso de uso.
 
-      Responsable del módulo **analítico y de datos**: recolección **multicentro** en hospitales con varias sedes y procesamiento de actualizaciones **casi en tiempo real** para análisis científico y estadístico.
+        Responsable del módulo **analítico y de datos**: recolección **multicentro** en hospitales con varias sedes y procesamiento de actualizaciones **casi en tiempo real**.
 
-      Módulos desplegables **offline** en centros sin conectividad; datos sensibles con cumplimiento normativo.
+        Módulos desplegables **offline**; datos sensibles con cumplimiento normativo. Formaciones internas semanales (**redacción y transmisión técnica**). Generadores de código y librerías internas. Trabajo en **Agile**.
+      tecnico: |
+        Plataforma sanitaria **Java / Spring Boot / Spring Framework** construida con **Maven**: diseño e implementación de **APIs RESTful**, persistencia **SQL** y componentes **NoSQL** donde aportaban (analítica/búsqueda).
 
-      Formaciones internas semanales rotativas en el equipo de I+D. Generadores de código y librerías internas para reducir trabajo repetitivo.
+        Módulo analítico multicentro: sincronización casi en tiempo real entre sedes; despliegues offline; cumplimiento normativo sobre datos sensibles.
+
+        **Microservicios**/módulos desplegables, tests automatizados, generadores de código. **Metodología Agile** y **redacción técnica** en formaciones internas semanales del equipo de I+D.
+      funcional: |
+        Parte del I+D que levantó una plataforma sanitaria de cero hasta producción. Responsable del módulo analítico multicentro: datos casi en tiempo real entre sedes hospitalarias y operación offline donde no hay conectividad.
+
+        Impulsé formaciones internas rotativas, librerías compartidas y generadores para reducir trabajo repetitivo, alineando entrega técnica con requisitos clínicos y normativos.
+
   - role: Senior Backend Engineer
     time: 2018 - 2020
     company: Metaenlace — Tempe / Inditex · migración legacy
-    details: |
-      Tras cambios regulatorios, **proyecto end-to-end en solitario**: servicios de **más de 20 minutos** de respuesta reducidos a **menos de 3 segundos** con cachés, rediseño de procesos y optimización de rendimiento.
+    details:
+      mixto: |
+        Tras cambios regulatorios, **proyecto end-to-end en solitario**: servicios de **más de 20 minutos** de respuesta reducidos a **menos de 3 segundos** con cachés, rediseño de procesos y optimización.
 
-      Migración de monolitos legacy a arquitectura moderna en entorno Inditex; definición de arquitectura junto al Tech Lead.
+        Migración de monolitos legacy a arquitectura moderna; definición de arquitectura junto al Tech Lead. **Java**, **APIs**, **SQL**, **TDD**, generadores de código. Stack también **.NET** y **RPA (Blue Prism)**.
+      tecnico: |
+        Proyecto end-to-end en solitario tras cambios regulatorios: latencias de **>20 min** a **<3 s** mediante cachés, rediseño y optimización en **Java**.
 
-      **TDD** en todos los desarrollos; generadores de código y artefactos compartidos entre equipos. Stack: **Java**, **.NET** y **RPA (Blue Prism)**.
+        Migración de monolitos a arquitectura moderna orientada a servicios; **APIs**, acceso a datos **SQL**, **Maven**/build enterprise, **TDD** en todos los desarrollos. Colaboración en definición de arquitectura con el Tech Lead. También **.NET** y **RPA (Blue Prism)** según necesidad del cliente.
+      funcional: |
+        Encargo end-to-end en solitario tras cambios regulatorios: pasé servicios de más de 20 minutos a menos de 3 segundos, desbloqueando operación de negocio.
+
+        Coordiné con el Tech Lead la migración de monolitos legacy y dejé generadores y prácticas TDD reutilizables entre equipos.
+
   - role: Backend Engineer
     time: 2015 - 2018
     company: Everis — ICO & SEPE · financiero y público
-    details: |
-      **ICO (financiero):** liderazgo de un equipo de **3 personas** en la migración desde cero del módulo de **seguridad de la plataforma**: **Angular** en frontend y **Spring Security** en backend, conviviendo con el legacy mientras se migraban monolitos y microservicios sin interrumpir el servicio.
+    details:
+      mixto: |
+        **ICO (financiero):** liderazgo de un equipo de **3 personas** en la migración del módulo de **seguridad**: **Angular** + **Spring Security**, conviviendo con legacy mientras se migraban monolitos y **microservicios** (**Java**, **Maven**, **SQL**).
 
-      **SEPE (público):** desarrollo fullstack **Java 8/JSF**; motor de reporting con **JasperReports** para generación masiva de documentos.
+        **SEPE (público):** fullstack **Java 8/JSF**; reporting masivo con **JasperReports**. Entornos **Agile**.
+      tecnico: |
+        **ICO:** liderazgo técnico de 3 personas en migración del módulo de seguridad: **Angular**, **Spring Security / Spring Framework**, **Java**, **Maven**, **APIs**, bases de datos **SQL**, convivencia monolitos/**microservicios** sin cortar servicio.
+
+        **SEPE:** desarrollo fullstack **Java 8/JSF** y motor de reporting **JasperReports**. Trabajo en **metodología Agile**; documentación y traspaso técnico al equipo.
+      funcional: |
+        En ICO lideré un equipo de 3 personas en la migración del módulo de seguridad de la plataforma, manteniendo el servicio durante el cambio.
+
+        En SEPE entregué reporting masivo y desarrollo fullstack en un contexto de administración pública, con foco en fiabilidad y entrega continua bajo Agile.
 
 projects:
   title: Proyectos personales
-  intro: Proyectos en Rust, Python y TypeScript — seguridad, backups, infraestructura y herramientas de desarrollo fuera del stack Java del día a día.
+  intro:
+    mixto: Proyectos en Rust, Python y TypeScript — seguridad, backups, infraestructura y herramientas de desarrollo fuera del stack Java del día a día.
+    tecnico: Proyectos personales en Rust, Python y TypeScript (seguridad, backups, infra). Complementan el stack Java/Spring del día a día; incluyen APIs, automatización y despliegue Docker.
+    funcional: Proyectos open source orientados a seguridad, backups e infraestructura — complemento al trabajo backend enterprise.
   assignments:
   - title: Cortex
     link: https://daniquir.github.io/cortex/es/
@@ -122,26 +206,82 @@ projects:
 
 skills:
   title: Stack técnico
-  intro: |
-    Núcleo en **Java/Spring** y arquitectura enterprise: microservicios, migraciones legacy y entornos de alta carga. Diseño de APIs con **OpenAPI**, testing con TDD y Testcontainers. Infra habitual con Docker, Kubernetes/OpenShift y mensajería (Kafka, RabbitMQ, JMS). También he trabajado con Hibernate, Liquibase, Flyway, Angular, Jenkins, SonarQube, MongoDB, Elasticsearch, Kibana, Graylog y stack legacy (WebLogic, JSF, .NET, RPA) en proyectos anteriores.
+  intro:
+    mixto: |
+      Núcleo en **Java/Spring Boot / Spring Framework** (>11 años Java), **Maven**, **APIs RESTful**, **microservicios**, bases de datos **SQL y NoSQL**, **Agile** y **redacción técnica**. Cloud: **AWS** (puesto actual); en stack **API Gateway** y **Lambda** por separado. También OpenAPI, TDD/Testcontainers, Docker, Kubernetes/OpenShift, Kafka, RabbitMQ, JMS, Hibernate, Liquibase/Flyway, Angular, Jenkins, SonarQube.
+    tecnico: |
+      Keywords alineadas a requisitos backend: **Java** (>11 años, experiencia sólida), **Spring Boot / Spring Framework** (Spring Boot 3.x), **Maven**, **RESTful APIs**, **SQL**, **NoSQL**, **Microservices**, **Agile**, **technical writing / redacción técnica**, **AWS**, **API Gateway**, **Lambda**. Además: Spring Cloud, Spring Security, OpenAPI, Hibernate/JPA, PostgreSQL, Oracle, MongoDB, Elasticsearch, Liquibase, Flyway, Docker, Kubernetes, OpenShift, Kafka, RabbitMQ, JMS, Jenkins, SonarQube, JUnit, Mockito, Testcontainers, TDD, Angular, TypeScript.
+    funcional: |
+      Capacidades orientadas a entrega: arquitectura y migraciones legacy, liderazgo técnico, calidad (TDD), documentación y formaciones, trabajo Agile en entornos regulados (retail, salud, financiero, público). Stack de referencia: Java/Spring, APIs, datos SQL/NoSQL, microservicios, **AWS**, plataforma (Docker/K8s); en stack también API Gateway y Lambda.
 
   core:
-  - label: Backend
-    items:
-    - Java & Spring Boot
-    - Arquitectura hexagonal
-    - OpenAPI & APIs REST
+    mixto:
+    - label: Backend
+      items:
+      - Java & Spring Boot / Spring Framework
+      - Maven & APIs RESTful
+      - Microservicios & arquitectura hexagonal
 
-  - label: Calidad & datos
-    items:
-    - JUnit & Mockito & Testcontainers
-    - SQL & JPA & Hibernate
-    - Liquibase & Flyway
+    - label: Datos & cloud
+      items:
+      - SQL & NoSQL (PostgreSQL, MongoDB…)
+      - AWS
+      - API Gateway
+      - Lambda
+      - OpenAPI & Hibernate & Flyway
 
-  - label: Plataforma
-    items:
-    - Docker & K8s & OpenShift
-    - Kafka & RabbitMQ & JMS
-    - Jenkins & SonarQube
+    - label: Calidad & plataforma
+      items:
+      - Agile & redacción técnica
+      - JUnit & Mockito & Testcontainers
+      - Docker & K8s & Kafka
+
+    tecnico:
+    - label: Backend
+      items:
+      - Java (>11 años)
+      - Spring Boot / Spring Framework
+      - Maven
+      - APIs RESTful & OpenAPI
+      - Microservicios & Spring Cloud
+
+    - label: Datos & cloud
+      items:
+      - SQL (PostgreSQL, Oracle)
+      - NoSQL (MongoDB, Elasticsearch)
+      - AWS
+      - API Gateway
+      - Lambda
+      - Hibernate / JPA / Liquibase / Flyway
+
+    - label: Método & plataforma
+      items:
+      - Metodología Agile
+      - Redacción técnica
+      - TDD / JUnit / Mockito / Testcontainers
+      - Docker / Kubernetes / OpenShift
+      - Kafka / RabbitMQ / JMS / Jenkins
+
+    funcional:
+    - label: Entrega
+      items:
+      - Arquitectura & migraciones
+      - Liderazgo técnico
+      - Agile & stakeholders
+
+    - label: Sistemas
+      items:
+      - Java / Spring
+      - APIs & contratos
+      - SQL / NoSQL
+      - AWS
+      - API Gateway
+      - Lambda
+
+    - label: Calidad
+      items:
+      - TDD & automatización
+      - Redacción técnica
+      - Docker / K8s / CI
 
 footer: "// uptime: 11+ yrs · java, arquitectura y backends"

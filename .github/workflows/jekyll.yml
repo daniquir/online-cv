@@ -50,6 +50,8 @@ jobs:
           cache: npm
       - name: Install Node dependencies
         run: npm ci
+      - name: Test CV views (happy/unhappy)
+        run: ruby scripts/test-cv-views.rb
       - name: Install Chromium for Puppeteer
         run: npx puppeteer browsers install chrome
       - name: Build with Jekyll
@@ -62,7 +64,10 @@ jobs:
           chmod +x scripts/ci-generate-pdf.sh
           BASE_PATH="${{ steps.pages.outputs.base_path }}" SITE_DIR="_site" scripts/ci-generate-pdf.sh
       - name: Verify CV PDF in site artifact
-        run: test -s "_site/assets/pdf/Daniel_Quirant_Rico_CV.pdf"
+        run: |
+          test -s "_site/assets/pdf/Daniel_Quirant_Rico_CV.pdf"
+          test -s "_site/assets/pdf/Daniel_Quirant_Rico_CV_tecnico.pdf"
+          test -s "_site/assets/pdf/Daniel_Quirant_Rico_CV_funcional.pdf"
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3

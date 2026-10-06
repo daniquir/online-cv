@@ -3,14 +3,20 @@ function getBaseUrl() {
   return (meta ? meta.getAttribute("content") || "" : "").replace(/\/$/, "");
 }
 
-function triggerDownload(pdfUrl) {
+function triggerDownload(pdfUrl, fileName) {
   const link = document.createElement("a");
   link.href = pdfUrl;
-  link.download = "Daniel_Quirant_Rico_CV.pdf";
+  link.download = fileName || "Daniel_Quirant_Rico_CV.pdf";
   link.rel = "noopener";
   document.body.appendChild(link);
   link.click();
   link.remove();
+}
+
+function getPdfFileName() {
+  const controls = document.querySelector(".floating-controls");
+  const fromData = controls && controls.getAttribute("data-cv-pdf");
+  return fromData || "Daniel_Quirant_Rico_CV.pdf";
 }
 
 function generatePDF(event) {
@@ -19,7 +25,8 @@ function generatePDF(event) {
   }
 
   const button = document.getElementById("pdfButton");
-  const pdfUrl = `${getBaseUrl()}/assets/pdf/Daniel_Quirant_Rico_CV.pdf`;
+  const pdfFile = getPdfFileName();
+  const pdfUrl = `${getBaseUrl()}/assets/pdf/${pdfFile}`;
 
   if (button) {
     button.classList.add("is-loading");
@@ -32,7 +39,7 @@ function generatePDF(event) {
       if (!response.ok) {
         throw new Error("PDF no encontrado");
       }
-      triggerDownload(pdfUrl);
+      triggerDownload(pdfUrl, pdfFile);
     })
     .catch(() => {
       alert(

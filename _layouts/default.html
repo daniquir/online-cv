@@ -9,7 +9,9 @@
 {% include head.html %}
 
 <body>
-  <div class="floating-controls d-print-none">
+  {% include assign-cv-view.html %}
+  <div class="floating-controls d-print-none" data-cv-view="{{ cv_view }}" data-cv-pdf="{% if cv_view_meta %}{{ cv_view_meta.pdf }}{% else %}Daniel_Quirant_Rico_CV.pdf{% endif %}">
+    {% include view-switcher.html %}
     <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" title="Tema claro/oscuro">
       <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
     </button>

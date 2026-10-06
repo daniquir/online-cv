@@ -37,6 +37,7 @@ exclude:
   - docker-compose.yml
   - README.md
   - LICENSE.md
+  - scripts/test-cv-views.rb
 
 encoding: "utf-8"
 compress_html: # - http://jch.penibelst.de/

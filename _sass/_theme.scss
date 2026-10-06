@@ -64,6 +64,46 @@
   z-index: 1000;
   display: flex;
   gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: calc(100vw - 40px);
+}
+
+.view-switcher {
+  display: inline-flex;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.view-switcher-btn {
+  background: $theme-color;
+  color: #fff;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.75;
+  transition: background 0.2s ease, opacity 0.2s ease;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    background: lighten($theme-color, 8%);
+    opacity: 1;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &.is-active {
+    opacity: 1;
+    background: lighten($theme-color, 12%);
+  }
 }
 
 .theme-toggle,
