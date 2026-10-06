@@ -3,7 +3,9 @@
   "description": "Herramientas de build del CV online",
   "scripts": {
     "pdf": "node scripts/generate-pdf.js",
-    "test": "docker run --rm -v \"$PWD:/srv/jekyll:Z\" -w /srv/jekyll jekyll/jekyll:4.2.2 ruby scripts/test-cv-views.rb"
+    "test": "docker run --rm -v \"$PWD:/srv/jekyll:Z\" -w /srv/jekyll jekyll/jekyll:4.2.2 ruby scripts/test-cv-views.rb && node scripts/test-postprocess-pdf.js",
+    "test:views": "docker run --rm -v \"$PWD:/srv/jekyll:Z\" -w /srv/jekyll jekyll/jekyll:4.2.2 ruby scripts/test-cv-views.rb",
+    "test:pdf": "node scripts/test-postprocess-pdf.js"
   },
   "devDependencies": {
     "pdf-lib": "^1.17.1",

@@ -52,6 +52,8 @@ jobs:
         run: npm ci
       - name: Test CV views (happy/unhappy)
         run: ruby scripts/test-cv-views.rb
+      - name: Test PDF postprocess (happy/unhappy)
+        run: node scripts/test-postprocess-pdf.js
       - name: Install Chromium for Puppeteer
         run: npx puppeteer browsers install chrome
       - name: Build with Jekyll
