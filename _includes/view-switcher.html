@@ -1,0 +1,13 @@
+{% include assign-cv-view.html %}
+{% if cv_views %}
+<nav class="view-switcher" aria-label="Vista del CV">
+  {% for v in cv_views %}
+  <a
+    href="{{ site.baseurl }}{{ v.path }}"
+    class="view-switcher-btn{% if v.id == cv_view %} is-active{% endif %}"
+    title="Vista {{ v.label }}"
+    {% if v.id == cv_view %}aria-current="page"{% endif %}
+  >{{ v.short }}</a>
+  {% endfor %}
+</nav>
+{% endif %}

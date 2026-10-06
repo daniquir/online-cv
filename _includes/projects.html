@@ -1,5 +1,13 @@
+{% include assign-cv-view.html %}
 {% assign projects = site.data.data.projects %}
 {% if projects %}
+{% if projects.intro[cv_view] %}
+  {% assign projects_intro = projects.intro[cv_view] %}
+{% elsif projects.intro.mixto %}
+  {% assign projects_intro = projects.intro.mixto %}
+{% else %}
+  {% assign projects_intro = projects.intro %}
+{% endif %}
 <section class="section projects-section">
 
   <h2 class="section-title">
@@ -10,9 +18,9 @@
     {{ projects.title }}
   </h2>
 
-  {% if projects.intro %}
+  {% if projects_intro %}
   <div class="intro">
-      <p>{{ projects.intro }}</p>
+      <p>{{ projects_intro }}</p>
   </div><!--//intro-->
   {% endif %}
 

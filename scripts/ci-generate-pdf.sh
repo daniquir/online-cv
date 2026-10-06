@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Genera el PDF en CI y lo coloca en _site (no en el repo fuente).
+# Genera los PDF (una por vista) en CI y los coloca en _site (no en el repo fuente).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -10,12 +10,9 @@ PORT="${PORT:-4000}"
 # Normaliza: "" o "/" → raíz; "/online-cv" → /online-cv
 BASE_PATH="${BASE_PATH%/}"
 [[ -z "${BASE_PATH}" || "${BASE_PATH}" == "/" ]] && BASE_PATH=""
-CV_URL="http://127.0.0.1:${PORT}${BASE_PATH}/print/"
+
 TMP_DIR="$(mktemp -d)"
 SERVE_ROOT="$(mktemp -d)"
-RAW_PDF="${TMP_DIR}/Daniel_Quirant_Rico_CV.raw.pdf"
-METRICS="${TMP_DIR}/.pdf-metrics.json"
-OUTPUT_PDF="${SITE_DIR}/assets/pdf/Daniel_Quirant_Rico_CV.pdf"
 
 if [[ ! -d "${SITE_DIR}" ]]; then
   echo "Error: no existe ${SITE_DIR}; ejecuta jekyll build antes." >&2
@@ -45,9 +42,10 @@ cleanup() {
 }
 trap cleanup EXIT
 
+PRINT_MIXTO="http://127.0.0.1:${PORT}${BASE_PATH}/print/"
 ready=0
 for _ in $(seq 1 40); do
-  if curl -sf "${CV_URL}" > /dev/null; then
+  if curl -sf "${PRINT_MIXTO}" > /dev/null; then
     ready=1
     break
   fi
@@ -55,21 +53,33 @@ for _ in $(seq 1 40); do
 done
 
 if [[ "${ready}" -ne 1 ]]; then
-  echo "Error: no se pudo alcanzar ${CV_URL}" >&2
+  echo "Error: no se pudo alcanzar ${PRINT_MIXTO}" >&2
   exit 1
 fi
 
-CV_URL="${CV_URL}" \
-  OUTPUT="${RAW_PDF}" \
-  METRICS="${METRICS}" \
-  node scripts/generate-pdf.js
+generate_one() {
+  local print_path="$1"
+  local output_name="$2"
+  local cv_url="http://127.0.0.1:${PORT}${BASE_PATH}${print_path}"
+  local raw_pdf="${TMP_DIR}/${output_name}.raw.pdf"
+  local metrics="${TMP_DIR}/${output_name}.metrics.json"
+  local output_pdf="${SITE_DIR}/assets/pdf/${output_name}"
 
-mkdir -p "$(dirname "${OUTPUT_PDF}")"
-node scripts/postprocess-pdf.js "${RAW_PDF}" "${OUTPUT_PDF}" "${METRICS}"
+  echo "Generando ${output_name} desde ${cv_url}..."
+  CV_URL="${cv_url}" \
+    OUTPUT="${raw_pdf}" \
+    METRICS="${metrics}" \
+    node scripts/generate-pdf.js
 
-if [[ ! -s "${OUTPUT_PDF}" ]]; then
-  echo "Error: no se generó ${OUTPUT_PDF}" >&2
-  exit 1
-fi
+  node scripts/postprocess-pdf.js "${raw_pdf}" "${output_pdf}" "${metrics}"
 
-echo "PDF listo en ${OUTPUT_PDF} ($(wc -c < "${OUTPUT_PDF}") bytes)"
+  if [[ ! -s "${output_pdf}" ]]; then
+    echo "Error: no se generó ${output_pdf}" >&2
+    exit 1
+  fi
+  echo "PDF listo en ${output_pdf} ($(wc -c < "${output_pdf}") bytes)"
+}
+
+generate_one "/print/" "Daniel_Quirant_Rico_CV.pdf"
+generate_one "/print/tecnico/" "Daniel_Quirant_Rico_CV_tecnico.pdf"
+generate_one "/print/funcional/" "Daniel_Quirant_Rico_CV_funcional.pdf"

@@ -1,0 +1,8 @@
+{% assign cv_view = page.cv_view | default: site.data.data.cv.default_view | default: "mixto" %}
+{% assign cv_views = site.data.data.cv.views %}
+{% assign cv_view_meta = false %}
+{% for v in cv_views %}
+  {% if v.id == cv_view %}
+    {% assign cv_view_meta = v %}
+  {% endif %}
+{% endfor %}

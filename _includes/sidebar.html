@@ -1,4 +1,12 @@
+{% include assign-cv-view.html %}
 {% assign sidebar = site.data.data.sidebar %}
+{% if sidebar.tagline[cv_view] %}
+  {% assign tagline_text = sidebar.tagline[cv_view] %}
+{% elsif sidebar.tagline.mixto %}
+  {% assign tagline_text = sidebar.tagline.mixto %}
+{% else %}
+  {% assign tagline_text = sidebar.tagline %}
+{% endif %}
 <div class="sidebar-wrapper">
 
   <div class="profile-container">
@@ -11,8 +19,8 @@
     <h1 class="name">{{ sidebar.name }}</h1>
     {% endif %}
 
-    {% if sidebar.tagline %}
-    <h3 class="tagline font-mono">{{ sidebar.tagline }}</h3>
+    {% if tagline_text %}
+    <h3 class="tagline font-mono">{{ tagline_text }}</h3>
     {% endif %}
 
     {% if sidebar.prompt %}
